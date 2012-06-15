@@ -8,7 +8,7 @@
 			$config->set('biobox_title', "This Site", true);
 			$config->set('biobox_text', "Proudly Powered by Chyrp", true);
 		}
-		
+
 		static function __uninstall($confirm)
 		{
 			if($confirm)
@@ -37,11 +37,11 @@
 			if(($config->set("biobox_title", $_POST['biobox_title'])) && ($config->set("biobox_text", $_POST['biobox_text'])))
 				Flash::notice(__("Settings updated."), "/admin/?action=biobox_settings");
 		}
-		
+
 		public function sidebar()
 		{
 			$config = Config::current();
-			echo '                <h1>'.$config->biobox_title.'</h1>';
+			echo '                <div id="biobox"><h1>'.$config->biobox_title.'</h1>';
 			if (in_array("textilize",$config->enabled_modules)) {
 			    $text = Textilize::textile($config->biobox_text);
 		    } else {
@@ -53,7 +53,7 @@
 			        $text = Smartypants::smartify($text);
 		        }
 	        }
-			echo '                '.$text;
+			echo '                '.$text.'</div>;
 		}
 	}
 
